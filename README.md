@@ -6,8 +6,8 @@ XMLTV est un format standard pour la description des programmes télévisés, ut
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-## epg-filter
-**epg-filter** sert à filtrer et alléger un fichier XMLTV pour ne garder que les chaînes désirées.
+## epg-filter.py
+**epg-filter.py** sert à filtrer et alléger un fichier XMLTV pour ne garder que les chaînes désirées.
 
 #### Fonctionnalités
 - Filtrage des chaînes spécifiées dans un fichier XMLTV.
@@ -19,8 +19,8 @@ python epg-filter.py "source.xml" "CNN.us|BBCNews.uk|BFMParis.fr" "destination.x
 ```
 &nbsp;&nbsp;
 
-## epg-merge
-**epg-merge** sert à joindre deux fichiers XMLTV en un fichier unique.
+## epg-merge.py
+**epg-merge.py** sert à joindre deux fichiers XMLTV en un fichier unique.
 
 #### Fonctionnalités
 - Fusion de deux fichiers XMLTV.
@@ -33,8 +33,8 @@ python epg-merge.py "guide1.xml" "guide2.xml" "guide12.xml"
 ```
 &nbsp;&nbsp;
 
-## epg-pretty
-**epg-pretty** indente et applique une mise en forme aux fichiers XMLTV pour une meilleure lisibilité.
+## epg-pretty.py
+**epg-pretty.py** indente et applique une mise en forme aux fichiers XMLTV pour une meilleure lisibilité.
 
 #### Fonctionnalités
 - Indentation.
