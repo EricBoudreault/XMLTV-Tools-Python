@@ -25,7 +25,6 @@ def main():
         arguments = sys.argv
         
         if len(arguments) == 4:
-#           folder = os.path.dirname(urllib.parse.urlparse(Path(__file__).resolve().as_uri()).path)
             source1 = arguments[1]
             source2 = arguments[2]
             destination = arguments[3]
