@@ -23,6 +23,7 @@ def between(expression, first_string, last_string):
 def main():
     try:
         arguments = sys.argv
+        
         if len(arguments) == 4:
 #           folder = os.path.dirname(urllib.parse.urlparse(Path(__file__).resolve().as_uri()).path)
             source1 = arguments[1]
