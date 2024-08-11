@@ -3,6 +3,9 @@ import sys
 import os
 import xml.dom.minidom
 
+"""
+    Get String between
+"""
 def between(expression, first_string, last_string, occurrence):
     try:
         final_string = ""
@@ -31,6 +34,9 @@ def between(expression, first_string, last_string, occurrence):
     except Exception as ex:
         return ""
 
+"""
+    Get Channel
+"""
 def get_channel(line):
     channel = ""
     first = ""
@@ -47,6 +53,9 @@ def get_channel(line):
 
     return channel
 
+"""
+    Filter EPG
+"""
 def filter_epg(content, filter_string):
     new_content = io.StringIO()
     is_channel_in_line = False
@@ -68,10 +77,6 @@ def filter_epg(content, filter_string):
 
 """
     Save XML string to file with pretty formatting
-
-    Parameters:
-    xml_string (str): XML content as a string.
-    file_name (str): File path where XML should be saved.
 """
 def save_pretty_xml(xml_string, file_name):
     try:
@@ -87,6 +92,7 @@ def save_pretty_xml(xml_string, file_name):
         # Unescape XML &quot; and &apos;
         unescaped_xml = xml_string.replace('&quot;', '"')
         #unescaped_xml = unescaped_xml.replace('&apos;', "'")
+
         unescaped_xml = unescaped_xml.replace('/>', " />")
 
         # Write the pretty XML to the destination file
@@ -94,8 +100,11 @@ def save_pretty_xml(xml_string, file_name):
             file.write(unescaped_xml)
 
     except Exception as ex:
-        print(f"\nsave_pretty_xml Error: {ex}\n")
+        print(f"save_pretty_xml Error: {ex}\n")
 
+"""
+    Main Function
+"""
 def main():
     try:
         arguments = sys.argv
@@ -127,11 +136,14 @@ def main():
 
             print("EPG Guide filtered successfully!\n")
         else:
-            print('\nUsage: python epg-filter.py "<source_file_path>" "<List of channels separated by |>" "<destination_file_path>"')
+            print('Usage: python epg-filter.py "<source_file_path>" "<List of channels separated by |>" "<destination_file_path>"')
             print('       python epg-filter.py "input.xml" "cnn.us|bfmtv.fr|bbcnews.uk" "output.xml"\n')
 
     except Exception as ex:
-        print(f"\nMain Error: {ex}\n")
+        print(f"Main Error: {ex}\n")
 
+"""
+    Entry Point
+"""
 if __name__ == '__main__':
     main()

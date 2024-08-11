@@ -3,73 +3,78 @@ import os
 import urllib.parse
 from pathlib import Path
 
-class Main:
-    def __init__(self):
-        pass
+"""
+    Get String between
+"""
+def between(expression, first_string, last_string):
+    try:
+        pos1 = expression.index(first_string) + len(first_string)
+        pos2 = expression.index(last_string, pos1)
+        final_string = expression[pos1:pos2]
 
-    def main(self):
-        try:
-            arguments = sys.argv
-            if len(arguments) == 4:
-                folder = os.path.dirname(urllib.parse.urlparse(Path(__file__).resolve().as_uri()).path)
-                source1 = arguments[1]
-                source2 = arguments[2]
-                destination = arguments[3]
+        return final_string if final_string else ""
 
-                print("Getting the content...")
+    except Exception:
+        return ""
 
-                # Get content of source files
-                with open(source1, 'r', encoding='utf-8') as file:
-                    content1 = file.read()
+"""
+    Main Function
+"""
+def main():
+    try:
+        arguments = sys.argv
+        if len(arguments) == 4:
+#           folder = os.path.dirname(urllib.parse.urlparse(Path(__file__).resolve().as_uri()).path)
+            source1 = arguments[1]
+            source2 = arguments[2]
+            destination = arguments[3]
 
-                with open(source2, 'r', encoding='utf-8') as file:
-                    content2 = file.read()
+            print("Getting the content...")
 
-                print("Getting the CHANNEL section...")
+            # Get content of source files
+            with open(source1, 'r', encoding='utf-8') as file:
+                content1 = file.read()
 
-                # Get "Channel" sections of EPG guides
-                channel_section1 = "  <channel id=" + self.between(content1, "<channel id=", "<programme")
-                channel_section2 = "<channel id=" + self.between(content2, "<channel id=", "<programme")
+            with open(source2, 'r', encoding='utf-8') as file:
+                content2 = file.read()
 
-                print("Getting the PROGRAMME section...")
+            print("Getting the CHANNEL section...")
 
-                # Get "Programme" sections of EPG guides
-                programme_section1 = "<programme" + self.between(content1, "<programme", "</tv>")
-                programme_section2 = "<programme" + self.between(content2, "<programme", "</tv>")
+            # Get "Channel" sections of EPG guides
+            channel_section1 = "  <channel id=" + between(content1, "<channel id=", "<programme")
+            channel_section2 = "<channel id=" + between(content2, "<channel id=", "<programme")
 
-                print("Building the new EPG Guide...\n")
+            print("Getting the PROGRAMME section...")
 
-                begin_section = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE tv SYSTEM "xmltv.dtd"><tv generator-info-name="">'
-                end_section = "</tv>\r"
+            # Get "Programme" sections of EPG guides
+            programme_section1 = "<programme" + between(content1, "<programme", "</tv>")
+            programme_section2 = "<programme" + between(content2, "<programme", "</tv>")
 
-                # Join source files
-                content = f"{begin_section}\r{channel_section1}{channel_section2}{programme_section1}{programme_section2}{end_section}"
-                content = content.replace('\t', '  ')
+            print("Building the new EPG Guide...")
 
-                print("Saving the EPG Guide...\n")
+            begin_section = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE tv SYSTEM "xmltv.dtd"><tv generator-info-name="">'
+            end_section = "</tv>\r"
 
-                # Generate EPG file
-                with open(destination, 'w', encoding='utf-8') as file:
-                    file.write(content)
+            # Join source files
+            content = f"{begin_section}\r{channel_section1}{channel_section2}{programme_section1}{programme_section2}{end_section}"
+            content = content.replace('\t', '  ')
 
-                print("EPG Guides merged successfully!\n")
+            print("Saving the EPG Guide...")
 
-            else:
-                print("\nError: Missing argument!\n")
+            # Generate EPG file
+            with open(destination, 'w', encoding='utf-8') as file:
+                file.write(content)
 
-        except Exception as ex:
-            print(f"\nMain Error: {ex}\n")
+            print("EPG Guides merged successfully!\n")
 
-    def between(self, expression, first_string, last_string):
-        try:
-            pos1 = expression.index(first_string) + len(first_string)
-            pos2 = expression.index(last_string, pos1)
-            final_string = expression[pos1:pos2]
+        else:
+            print("Error: Missing argument!\n")
 
-            return final_string if final_string else ""
+    except Exception as ex:
+        print(f"Main Error: {ex}\n")
 
-        except Exception:
-            return ""
-
+"""
+    Entry Point
+"""
 if __name__ == "__main__":
-    Main().main()
+    main()
