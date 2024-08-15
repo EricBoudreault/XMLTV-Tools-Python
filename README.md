@@ -6,8 +6,27 @@ XMLTV est un format standard pour la description des programmes télévisés, ut
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-## epg-filter.py
-**epg-filter.py** sert à filtrer et alléger un fichier XMLTV pour ne garder que les chaînes désirées.
+## validate-m3u8.py
+Script validant la forme d'un fichier m3u8. Il ne s'assure pas que les liens sont bons.
+
+#### Fonctionnalités
+- Valide le format d'un fichier m3u8 avec ces règles:
+   - Ignore les lignes débutant  par la balise '#EXTREM:'
+   - S'assure qu'il n'y a pas 2 lignes consécutives débutant par la balise '#EXTINF'
+   - Vérifier la présence d'attributs obligatoires comme 'tvg-id', 'tvg-logo' et 'group-name'
+   - Vérifier la présence de 'group-title'
+   - Vérifier qu'il y a des valeurs pour les attributs 'tvg-id', 'tvg-logo' et 'group-name'
+   - Vérifier qu'il y a toujours un titre pour la chaîne télé
+- Produit un fichier 'validate-m3u8.py-err.txt' avec les avertissements sur chacune des lignes qui ne respectent pas les règles.
+
+#### Exemple d'utilisation
+```sh
+python validate-m3u8.py "playlist.m3u8"
+```
+&nbsp;&nbsp;
+
+## filter-epg.py
+Script servant à filtrer et alléger un fichier XMLTV pour ne garder que les chaînes désirées.
 
 #### Fonctionnalités
 - Filtrage des chaînes spécifiées dans un fichier XMLTV.
@@ -15,12 +34,12 @@ XMLTV est un format standard pour la description des programmes télévisés, ut
 
 #### Exemple d'utilisation
 ```sh
-python epg-filter.py "source.xml" "CNN.us|BBCNews.uk|BFMParis.fr" "destination.xml"
+python filter-epg.py "source.xml" "CNN.us|BBCNews.uk|BFMParis.fr" "destination.xml"
 ```
 &nbsp;&nbsp;
 
-## epg-merge.py
-**epg-merge.py** sert à joindre deux fichiers XMLTV en un fichier unique.
+## merge-epg.py
+Script servant à joindre deux fichiers XMLTV en un fichier unique.
 
 #### Fonctionnalités
 - Fusion de deux fichiers XMLTV.
@@ -29,12 +48,12 @@ python epg-filter.py "source.xml" "CNN.us|BBCNews.uk|BFMParis.fr" "destination.x
 
 #### Exemple d'utilisation
 ```sh
-python epg-merge.py "guide1.xml" "guide2.xml" "guide12.xml"
+python merge-epg.py "guide1.xml" "guide2.xml" "guide12.xml"
 ```
 &nbsp;&nbsp;
 
-## epg-pretty.py
-**epg-pretty.py** indente et applique une mise en forme aux fichiers XMLTV pour une meilleure lisibilité.
+## pretty-epg.py
+Script indentant et appliquant une mise en forme aux fichiers XMLTV pour une meilleure lisibilité.
 
 #### Fonctionnalités
 - Indentation.
@@ -43,8 +62,8 @@ python epg-merge.py "guide1.xml" "guide2.xml" "guide12.xml"
 
 #### Exemples d'utilisation
 ```sh
-python epg-pretty.py "guide.xml" "guide.xml"
-python epg-pretty.py "guide.xml" "prettyguide.xml"
+python pretty-epg.py "guide.xml" "guide.xml"
+python pretty-epg.py "guide.xml" "prettyguide.xml"
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;
 
