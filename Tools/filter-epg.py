@@ -40,18 +40,12 @@ def between(expression, first_string, last_string, occurrence):
     Get Channel
 """
 def get_channel(line):
-    channel = ""
-    first = ""
-    templine = line.replace(" ", "")
-
     first = f"channel id=\""
-    first = first.replace(" ", "")
-    channel = between(templine, first, "\"", 1)
+    channel = between(line, first, "\"", 1)
 
     if len(channel) == 0:
         first = f"channel=\""
-        first = first.replace(" ", "")
-        channel = between(templine, first, "\"", 1)
+        channel = between(line, first, "\"", 1)
 
     return channel
 
