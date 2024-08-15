@@ -1,4 +1,6 @@
-﻿import argparse
+# Developped by eboudreault@gmail.com
+# 2024-08
+import argparse
 import os
 import re
 
