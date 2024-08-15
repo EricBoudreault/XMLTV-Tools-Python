@@ -42,7 +42,7 @@ def validate_m3u8_file(filename):
             if 'group-title=' in line:
                 warnings.append(f"Line {i}: Unauthorized presence of the 'group-title' attribute.")
             
-            # Check that there is text between quotes for attributes 'tvg-id', 'tvg-logo', and 'group-name'
+            # Check that there is a value between quotes for attributes 'tvg-id', 'tvg-logo' and 'group-name'
             if not re.search(r'tvg-id="[^"]+"', line):
                 warnings.append(f"Line {i}: No channel identifier for the 'tvg-id' attribute.")
             if not re.search(r'tvg-logo="http[^"]+"', line):
