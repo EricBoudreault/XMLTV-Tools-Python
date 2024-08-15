@@ -1,7 +1,8 @@
 # XMLTV-Tools-Python
-Outils développés en Python pour faciliter la manipulation et la gestion de fichiers **XMLTV**.
+Outils développés en Python pour faciliter la manipulation et la gestion de fichiers **XMLTV** et **M3U8**.
 
-XMLTV est un format standard pour la description des programmes télévisés, utilisé par de nombreux services de télévision et applications de gestion des programmes.
+**XMLTV** est un format standard pour la description des programmes télévisés, utilisé par de nombreux services de télévision et applications de gestion des programmes.
+Un fichier de type **M3U8** représente une liste de lecture au format M3U, mais codée en UTF-8.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
