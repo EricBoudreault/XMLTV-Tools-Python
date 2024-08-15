@@ -1,3 +1,5 @@
+# Developped by eboudreault@gmail.com
+# 2024-08
 import io
 import sys
 import os
